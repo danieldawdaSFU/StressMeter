@@ -13,6 +13,7 @@ import com.example.daniel_dawda_stressmeter.R
 import com.example.daniel_dawda_stressmeter.databinding.FragmentHomeBinding
 import java.io.File
 import java.io.FileOutputStream
+import java.io.InputStream
 import java.io.OutputStream
 
 class HomeFragment : Fragment() {
@@ -45,11 +46,10 @@ class HomeFragment : Fragment() {
         val adapter = GridViewAdapter(requireContext(), list)
         gridView.adapter = adapter
 
+        // get position of click from gridview and sends it and timestamp to csv
         gridView.onItemClickListener = AdapterView.OnItemClickListener { _, _, position, _ ->
-            var sData : List<StressData> = listOf()
-            sData = sData + StressData(System.currentTimeMillis(), position)
             val file = File(requireContext().filesDir, "stress_data.csv")
-            FileOutputStream(file).apply { writeCsv(sData) }
+            FileOutputStream(file, true).apply { writeCsv(listOf(StressData(System.currentTimeMillis(), position))) }
             Toast.makeText(requireContext(), "Clicked index: $position", Toast.LENGTH_SHORT).show()
         }
 
@@ -64,8 +64,7 @@ class HomeFragment : Fragment() {
     // csv read and write adapted from https://www.baeldung.com/kotlin/csv-files
     fun OutputStream.writeCsv(sData: List<StressData>) {
         val writer = bufferedWriter()
-        writer.write("Time,Stress")
-        writer.newLine()
+
         sData.forEach {
             writer.write("${it.timestamp},${it.stressLevel}")
             writer.newLine()
