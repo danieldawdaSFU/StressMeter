@@ -4,21 +4,32 @@
     android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="8dp">
+    android:padding="8dp"
+    android:gravity="center_vertical">
+
+    <TextView
+        android:id="@+id/index_item"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:singleLine="true"/>
 
     <TextView
         android:id="@+id/time_item"
         android:layout_width="0dp"
-        android:layout_weight="1"
         android:layout_height="wrap_content"
-        android:gravity="start" />
+        android:layout_weight="2"
+        android:gravity="center"
+        android:singleLine="true"/>
 
     <TextView
         android:id="@+id/level_item"
         android:layout_width="0dp"
-        android:layout_weight="1"
         android:layout_height="wrap_content"
-        android:gravity="end" />
+        android:layout_weight="2"
+        android:gravity="center"
+        android:singleLine="true"/>
 
 
 

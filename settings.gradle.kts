@@ -23,3 +23,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "Daniel_Dawda_StressMeter"
 include(":app")
+
