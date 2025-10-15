@@ -1,6 +1,11 @@
 package com.example.daniel_dawda_stressmeter
 
+import android.content.Context
+import android.media.MediaPlayer
+import android.os.Build
 import android.os.Bundle
+import android.os.VibrationEffect
+import android.os.Vibrator
 import android.view.Menu
 import com.google.android.material.navigation.NavigationView
 import androidx.navigation.findNavController
@@ -37,6 +42,24 @@ class MainActivity : AppCompatActivity() {
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+
+        // check perms
+        Util.checkPermissions(this)
+
+        // vibrate adapted from https://www.geeksforgeeks.org/android/how-to-vibrate-a-device-programmatically-in-android/
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val vibrator = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
+            val vibrationEffect1: VibrationEffect
+            vibrationEffect1 =
+                VibrationEffect.createOneShot(1000, VibrationEffect.DEFAULT_AMPLITUDE)
+            vibrator.cancel()
+            vibrator.vibrate(vibrationEffect1)
+        }
+
+        // play sound effect, adapted from https://developer.android.com/media/platform/mediaplayer/basics
+        var mediaPlayer = MediaPlayer.create(this, R.raw.app_open_loud)
+        mediaPlayer.start()
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

@@ -21,22 +21,21 @@ object Util {
 
         val permissions = mutableListOf<String>()
 
-        if (ContextCompat.checkSelfPermission(activity!!, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
-            permissions.add(Manifest.permission.CAMERA)
-        }
         if (ContextCompat.checkSelfPermission(activity, Manifest.permission.READ_MEDIA_IMAGES) != PackageManager.PERMISSION_GRANTED) {
             permissions.add(Manifest.permission.READ_MEDIA_IMAGES)
+        }
+        if (ContextCompat.checkSelfPermission(activity, Manifest.permission.READ_MEDIA_AUDIO) != PackageManager.PERMISSION_GRANTED) {
+            permissions.add(Manifest.permission.READ_MEDIA_AUDIO)
+        }
+        if (ContextCompat.checkSelfPermission(activity, Manifest.permission.READ_MEDIA_VIDEO) != PackageManager.PERMISSION_GRANTED) {
+            permissions.add(Manifest.permission.READ_MEDIA_VIDEO)
+        }
+        if (ContextCompat.checkSelfPermission(activity, Manifest.permission.VIBRATE) != PackageManager.PERMISSION_GRANTED) {
+            permissions.add(Manifest.permission.VIBRATE)
         }
 
         if (permissions.isNotEmpty()) {
             ActivityCompat.requestPermissions(activity, permissions.toTypedArray(), 0)
         }
-    }
-
-    fun getBitmap(context: Context, imgUri: Uri): Bitmap {
-        var bitmap = BitmapFactory.decodeStream(context.contentResolver.openInputStream(imgUri))
-        val matrix = Matrix()
-        var ret = Bitmap.createBitmap(bitmap, 0, 0, bitmap.width, bitmap.height, matrix, true)
-        return ret
     }
 }
