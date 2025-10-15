@@ -15,4 +15,7 @@
     <string name="instance">Instance</string>
     <string name="time">Time</string>
     <string name="stress_level">Stress Level</string>
+    <string name="cancel">Cancel</string>
+    <string name="confirm">Confirm</string>
+    <string name="touch_the_image_that_best_captures_how_stressed_you_feel_right_now">Touch the image that best captures how stressed you feel right now</string>
 </resources>
