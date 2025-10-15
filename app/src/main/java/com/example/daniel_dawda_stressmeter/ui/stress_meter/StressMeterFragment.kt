@@ -84,7 +84,7 @@ class StressMeterFragment : Fragment() {
         // line chart adapted from https://github.com/lecho/hellocharts-android Usage
         val chart : LineChartView = binding.lineChart
 
-        val line = Line(chartValues).setColor(Color.BLUE)
+        val line = Line(chartValues).setColor(Color.BLUE).setCubic(true)
         val lines = listOf(line)
 
         val data = LineChartData()
