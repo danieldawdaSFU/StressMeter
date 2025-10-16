@@ -6,8 +6,7 @@
     android:layout_height="wrap_content"
     android:layout_gravity="center"
     app:cardUseCompatPadding="true"
-    app:cardCornerRadius="24dp"
-    app:cardElevation="5dp">
+    app:cardElevation="0dp">
 
 
     <ImageView
